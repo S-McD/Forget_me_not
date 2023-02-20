@@ -1,0 +1,27 @@
+<head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+
+<title>{{title}}</title>
+
+<div class ="login-box">
+<h1>Login</h1>
+
+<form id="new-session-form" action="/sessions" method="post">
+<div class="user-box">
+  <input id="email" placeholder = "Email" type="email" name="email" value="">
+  </div><br>
+  <div class="user-box">
+  <input id="password" type="password" placeholder ="Password" name="password" value="">
+  </div><br>
+  <input id="submit" type="submit" value="Submit">
+</form>
+
+<p>{{error}}</p>
+
+<form method = 'GET' action = '/signup'> 
+    <input type = 'submit' value = 'Signup' >
+</form> 
+
+</div>

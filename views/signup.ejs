@@ -1,0 +1,36 @@
+<head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  
+<div class="login-box">
+  <h1> Sign up</h1>
+<form id="new-user-form" action="/users" method="post">
+
+ <div class="user-box">
+  <input id="email" type="email" placeholder="Email" name="email" value="">
+  </div><br>
+  <div class="user-box">
+  <input id="password" type="password" placeholder="Password" name="password" value="">
+  </div><br>
+  <div class="user-box">
+  <input id="confirm_password" type="password" placeholder="Confirm password" name="confirm_password" value="">
+  </div><br>
+  <div class="user-box">
+  <input id="username" type="username" placeholder="Username" name="username" value="">
+  </div><br>
+  <div class="user-box">
+  <input id="firstName" type="firstName" placeholder="First Name" name="firstName" value="">
+  </div><br>
+  <div class="user-box">
+  <input id="lastName" type="lastName" placeholder="Last Name" name="lastName" value="">
+  </div><br>
+
+  <input id="submit" type="submit" value="Submit">
+  
+</form>
+
+
+<p>{{error}}</p>
+
+</div>
