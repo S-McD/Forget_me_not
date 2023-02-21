@@ -1,6 +1,6 @@
 const UserController = {
     New: (req, res) => {
-    res.render("signup");
+      res.render("signup");
     },
 
     Login: (req, res) => {
@@ -8,7 +8,7 @@ const UserController = {
     },
 
     Index: (req, res) => {
-    res.render("userdashboard");
+      res.render("userdashboard");
     },
   };
   
