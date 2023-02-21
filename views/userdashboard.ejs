@@ -1,0 +1,37 @@
+<head>
+    <title>Userdashboard</title>
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+</head>
+<h1>Userdashboard</h1>
+
+<div class="user-card">
+    <img src="/images/user.jpg" width="100px"><br>
+    Username: {{user.username}}<br>
+    Email: {{user.email}}<br>
+    Full name: {{user.firstName}} {{user.lastName}}<br>
+    
+    You have {{user.friends.length}} friends 
+    
+</div>
+
+<body>
+    <nav class="nav">
+        <ul>
+          <li><a href='/events'>Events</a></li>
+          <li><a href='/requests'>My Requests</a></li>
+          <li><a href='/wishlist'>Wishlist</a></li>
+          <div class="nav-right">
+          <li class="username">Hello, {{user.firstName}} {{user.lastName}} </li>
+          <li> <form action='/sessions?_method=DELETE' method='POST'>
+        <input id="log_out" type="submit" value="Log Out"></div>
+      </form></li>
+        </ul>
+      </div>
+      </nav>
+      </body>
+    
+    {{{body}}}
+    
+  </body>
+</html>
+
