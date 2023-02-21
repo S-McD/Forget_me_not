@@ -3,7 +3,7 @@ const UserController = {
     res.render("signup");
     },
 
-    Create: (req, res) = {
+    Create: (req, res) => {
       // creates new user in db
       // creates new session 
       // routes new user to user dashboard 
