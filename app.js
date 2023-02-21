@@ -7,7 +7,10 @@ const session = require("express-session");
 
 var homeRouter = require('./routes/home');
 var usersRouter = require('./routes/users');
+
 const sessionsRouter = require('./routes/sessions');
+const eventsRouter = require('./routes/events');
+
 
 var app = express();
 
@@ -54,7 +57,11 @@ const sessionChecker = (req, res, next) => {
 
 app.use('/', homeRouter);
 app.use('/user', usersRouter);
+
 app.use('/sessions', sessionsRouter);
+
+app.use('/events', eventsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
