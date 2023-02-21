@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head><link rel="stylesheet" href="/style.css" ></head>
+    <body>
+        <header>
+
+            <span class="site_logo">
+                <img src="https://codingblackfemales.com/img/memberzone/makers.png" alt="Makers" width="117" height="27">
+            </span>
+
+            <span>
+                <a href="/events">Events</a>
+                <span class="larger">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <a href="/login">Sign out</a>
+                <span class="larger">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
+                <a href="/requests">Request</a>
+            </span>
+        </header>
+
+        <div class="middle_new">
+
+            <div class="middle">
+                <h1> Create an Event </h1>
+            </div>
+
+            <div class="middle">
+                <h2> Here you can create an event by inputting the name, description, wishlist and deadline date </h2>
+            </div>
+
+            <div class="form_outline">
+
+                <form action="/events/new" method="POST">
+
+                    <label for="name">Name </label><br>
+                    <input type="text" id="name" name="name" pattern=".{0,100}" maxlength="100" size = "50" title="Up to 100 characters for the name of this event" placeholder="Stephen Frys' birthday" class="name_box" required><br><br>
+
+                    <label for="description">Description </label><br>
+                    <!-- <input type="text" id="description" name="description" pattern=".{0,2000}" title="Up to 2000 characters for the title of the space" placeholder="It is very nice" class="description_box"> <br><br> -->
+                    <textarea type ="text" id="description" name="description" rows="4" cols="50" maxlength="2000" placeholder="Whats the plan? Describe it to us" class="description_box"></textarea><br><br>
+
+                    <label for="wishlist">Wishlist </label><br>
+                    <input type="text" id="wishlist" name="wishlist" pattern="[0-9].{1,}" title="Only a link to the wishlist for this field" maxlength="20" placeholder="BlackAdder Memorabilia" class="normal_box" required><br><br>
+
+                    <label for="deadline_date">Deadline </label><br>
+                    <input type="date" id="deadline_date" name="deadline_date" class="normal_box" required><br><br>
+
+                    <div class="middle"> 
+                        <input type="submit" value="Create my Event" class="submit_button">
+                    </div>
+                
+                </form>
+
+            </div>
+
+        </div>
+
+    </body>
+
+</html>
