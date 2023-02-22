@@ -8,6 +8,6 @@ const RequestSchema = new mongoose.Schema({
     status: String,
   });
   
-  const Event = mongoose.model("Request", RequestSchema);
+  const Request = mongoose.model("Request", RequestSchema);
   
   module.exports = Request;
