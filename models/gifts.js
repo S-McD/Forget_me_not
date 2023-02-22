@@ -4,7 +4,7 @@ const Gift = require("./gifts");
 const GiftSchema = new mongoose.Schema({
     item: String,
     price: Number,
-    wishlist_id: {type: mongoose.Types.ObjectId, ref: "Wishlist"}
+    link: String
   });
   
   const Gift = mongoose.model("Gift", GiftSchema);
