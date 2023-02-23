@@ -10,7 +10,7 @@ const UserController = {
       const email = req.body.email;
       User.findOne({ email: email }).then((user) => {
         if (user) {
-          res.render("user/signup", {layout: "signup", error: "Email already in use"})
+          res.render("signup", {layout: "signup", error: "Email already in use"})
         }
       });
   
@@ -22,17 +22,16 @@ const UserController = {
           }
           // create new session here 
           req.session.user = user
-          res.status(201).redirect("user/userdashboard");
+          res.status(201).redirect("userdashboard");
         });
       } else {
         res.redirect("signup");
       }
-    },
+      },
       // creates new user in db
       // creates new session 
       // routes new user to user dashboard 
     
-
     Login: (req, res) => {
       res.render("login");
     },

@@ -3,16 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const session = require("express-session");
+const sessions = require("express-session");
 
 var homeRouter = require('./routes/home');
 var usersRouter = require('./routes/users');
 var wishlistRouter = require('./routes/wishlists');
 
-const sessionsRouter = require('./routes/sessions');
+// const sessionsRouter = require('./routes/sessions');
 const eventsRouter = require('./routes/events');
 const requestsRouter = require('./routes/requests');
-
 
 var app = express();
 
@@ -25,19 +24,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(methodOverride('_method'));
-
-app.use(
-  session({
-    key: "user_sid",
-    secret: "super_secret",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      expires: 600000,
-    },
-  })
-);
 
 // clear the cookies after user logs out
 app.use((req, res, next) => {
@@ -47,11 +33,21 @@ app.use((req, res, next) => {
   next();
 });
 
+//session middleware
+const oneDay = 1000 * 60 * 60 * 24;
+
+app.use(sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false
+}));
+
 // middleware function to check for logged-in users
 const sessionChecker = (req, res, next) => {
   if (!req.session.user && !req.cookies.user_sid) {
     console.log('redirect to login');
-    res.redirect("/sessions/new");
+    res.redirect("/");
   } else {
     next();
   }
@@ -59,12 +55,9 @@ const sessionChecker = (req, res, next) => {
 
 app.use('/', homeRouter);
 app.use('/user', usersRouter);
-app.use('/wishlist', wishlistRouter);
-
-app.use('/sessions', sessionsRouter);
-
-app.use('/events', eventsRouter);
-app.use('/requests', requestsRouter);
+app.use('/wishlist', sessionChecker, wishlistRouter);
+app.use('/events', sessionChecker, eventsRouter);
+app.use('/requests', sessionChecker, requestsRouter);
 
 
 // catch 404 and forward to error handler
