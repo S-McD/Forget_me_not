@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "nodemon": "nodemon ./bin/www"
+    "nodemon": "nodemon ./bin/www",
+    "start:test": "PORT=3030 MONGODB_URL='mongodb://0.0.0.0/forget-me-not-test' npm start",
+    "test:unit": "jest"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
