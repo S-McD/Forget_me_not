@@ -4,7 +4,7 @@ const EventsController = {
     },
 
     New: (req, res) => {
-      res.render("new_events");
+      res.render("new_event");
       },
   };
   
