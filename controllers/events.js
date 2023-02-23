@@ -6,6 +6,10 @@ const EventsController = {
     New: (req, res) => {
       res.render("new_event");
       },
+
+    Create: (req, res) => {
+      console.log("I'm creating an event")
+    },
   };
   
   module.exports = EventsController;
