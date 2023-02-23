@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 
 beforeAll(function (done) {
-  mongoose.connect("mongodb://0.0.0.0/forget-me-not_test", {
+  mongoose.connect("mongodb://0.0.0.0/forget-me-not-test", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
