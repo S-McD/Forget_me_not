@@ -1,3 +1,5 @@
+const Event = require("../models/events")
+
 const EventsController = {
     Index: (req, res) => {
     res.render("events");
@@ -8,10 +10,19 @@ const EventsController = {
       },
 
     Create: (req, res) => {
-      console.log(req.body)
       console.log("I'm creating an event")
-    },
-  };
+      const event = new Event(req.body);
+ 
+      event.save((err) => {
+          if (err) {
+            throw err;
+          } else {
+            res.redirect("users/userdashboard")
+          }
+      });
+      },
+    };
+  
   
   module.exports = EventsController;
   
