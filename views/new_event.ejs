@@ -2,20 +2,7 @@
 <html>
     <head><link rel="stylesheet" href="/style.css" ></head>
     <body>
-        <header>
-
-            <span class="site_logo">
-                <img src="https://codingblackfemales.com/img/memberzone/makers.png" alt="Makers" width="117" height="27">
-            </span>
-
-            <span>
-                <a href="/events">Events</a>
-                <span class="larger">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <a href="/login">Sign out</a>
-                <span class="larger">&nbsp;&nbsp;|&nbsp;&nbsp;</span>
-                <a href="/requests">Request</a>
-            </span>
-        </header>
+        <%- include('partials/signed_in_header') %>
 
         <div class="middle_new">
 
@@ -45,7 +32,7 @@
             </div>
 
         </div>
-
+        <%- include('partials/footer') %>
     </body>
 
 </html>
