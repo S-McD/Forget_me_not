@@ -17,7 +17,7 @@ const EventsController = {
           if (err) {
             throw err;
           } else {
-            res.redirect("users/userdashboard")
+            res.redirect("/user/userdashboard")
           }
       });
       },
