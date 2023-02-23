@@ -8,6 +8,7 @@ const EventsController = {
       },
 
     Create: (req, res) => {
+      console.log(req.body)
       console.log("I'm creating an event")
     },
   };
