@@ -10,8 +10,9 @@ const UserController = {
       const email = req.body.email;
       User.findOne({ email: email }).then((user) => {
         if (user) {
-          res.render("user/signup", {layout: "signup", error: "Email already in use"})
+          res.render("signup", {layout: "signup", error: "Email already in use"})
         }
+        console.log("im a ghost")
       });
   
       if (req.body.password == req.body.confirm_password) {
