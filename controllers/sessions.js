@@ -2,12 +2,11 @@ const User = require("../models/users");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("login");
+    res.render("/login");
   },
 
   Create: (req, res) => {
     console.log("trying to log in");
-    // find user in db and if pass && email match render userdashboard
     const email = req.body.email;
     const password = req.body.password;
     User.findOne({ email: email }).then((user) => {
@@ -17,8 +16,8 @@ const SessionsController = {
         res.render("user/login", {layout: "login", error: "incorrect password"});
       } else {
         req.session.user = user;
+        console.log("logged in");
         res.redirect("user/userdashboard");
-        console.log(user);
       }
     });
   },
@@ -28,9 +27,9 @@ const SessionsController = {
     if (req.session.user && req.cookies.user_sid) {
       res.clearCookie("user_sid");
     }
-    res.redirect("user/login");
+    console.log("logged out")
+    res.redirect("/");
   },
-
 };
 
 
