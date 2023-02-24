@@ -12,7 +12,7 @@ const UserController = {
         if (user) {
           res.render("user/signup", {layout: "signup", error: "Email already in use"})
         }
-        console.log("im a ghost")
+        console.log("ERROR")
       });
   
       if (req.body.password == req.body.confirm_password) {

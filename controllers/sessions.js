@@ -13,10 +13,10 @@ const SessionsController = {
     User.findOne({ email: email }).then((user) => {
       if (!user) {
         res.render("login", { layout: "login", error: "incorrect email"});
-        console.log("fucking idiot")
+        console.log("ERROR")
       } else if (user.password != password) {
         res.render("login", {layout: "login", error: "incorrect password"});
-        console.log("fucking idiot 2")
+        console.log("ERROR 2")
       } else {
         req.session.user = user;
         res.redirect("user/userdashboard");
