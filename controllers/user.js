@@ -12,6 +12,7 @@ const UserController = {
         if (user) {
           res.render("user/signup", {layout: "signup", error: "Email already in use"})
         }
+        console.log("ERROR")
       });
   
       if (req.body.password == req.body.confirm_password) {
@@ -25,7 +26,7 @@ const UserController = {
           res.status(201).redirect("user/userdashboard");
         });
       } else {
-        res.redirect("signup");
+        res.redirect("user/signup");
       }
     },
       // creates new user in db
