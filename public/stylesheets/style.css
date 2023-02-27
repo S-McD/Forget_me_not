@@ -134,7 +134,7 @@ a {
   text-decoration: underline;
  }
 
- h1 {
+ .title {
   top: -20px;
   position: fixed;
   font-size: 6em;
