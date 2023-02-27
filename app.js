@@ -33,12 +33,12 @@ app.use((req, res, next) => {
 });
 
 //session middleware
-const oneDay = 1000 * 60 * 60 * 24;
+const oneHour = 1000 * 60 * 60;
 
 app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
     saveUninitialized: false,
-    cookie: { maxAge: oneDay },
+    cookie: { maxAge: oneHour },
     resave: false
 }));
 
