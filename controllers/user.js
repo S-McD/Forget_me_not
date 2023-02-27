@@ -1,4 +1,6 @@
 const User = require("../models/users");
+const Event = require("../models/events");
+
 
 const UserController = {
     New: (req, res) => {
@@ -12,6 +14,7 @@ const UserController = {
         if (user) {
           res.render("signup", {layout: "signup", error: "Email already in use"})
         }
+        console.log("ERROR")
       });
   
       if (req.body.password == req.body.confirm_password) {
@@ -25,7 +28,7 @@ const UserController = {
           res.status(201).redirect("userdashboard");
         });
       } else {
-        res.redirect("signup");
+        res.redirect("user/signup");
       }
       },
       // creates new user in db
@@ -36,8 +39,10 @@ const UserController = {
       res.render("login");
     },
 
-    Index: (req, res) => {
-      res.render("userdashboard");
+    Index: async (req, res) => {
+      
+      const userEvents = await Event.find({ creator: req.session.user._id });
+      res.render("userdashboard", { events: userEvents });
     },
   };
   

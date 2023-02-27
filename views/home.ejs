@@ -1,13 +1,26 @@
-<!-- <!DOCTYPE html> -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title> Forget Me Not </title>
+  </head>
+  
+  <body>
+    <h1 class="title">Welcome to <%= title %></h1>
 
-<title><%= title %></title>
-<h1 class="title">Welcome to <%= title %></h1>
-
-<form method = 'GET' action = 'user/signup'> 
-    <input type = 'submit' value = 'Signup' >
-</form> 
-
-<form method = 'GET' action = 'user/login'>
-    <input type = 'submit' value = 'Login' >
-</form> 
-
+    <div class=login2-box>
+      <form method = 'GET' action = 'user/signup'> 
+        <button>Sign Up</button>
+      </form> 
+    
+      <form method = 'GET' action = 'user/login'>
+        <button>Log In</button>
+      </form> 
+    </div>
+    
+    <%- include('partials/footer') %> 
+  </body>
+</html>

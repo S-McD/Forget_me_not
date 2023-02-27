@@ -8,8 +8,7 @@ const sessions = require("express-session");
 var homeRouter = require('./routes/home');
 var usersRouter = require('./routes/users');
 var wishlistRouter = require('./routes/wishlists');
-
-// const sessionsRouter = require('./routes/sessions');
+const sessionsRouter = require('./routes/sessions');
 const eventsRouter = require('./routes/events');
 const requestsRouter = require('./routes/requests');
 
@@ -55,9 +54,10 @@ const sessionChecker = (req, res, next) => {
 
 app.use('/', homeRouter);
 app.use('/user', usersRouter);
-app.use('/wishlist', sessionChecker, wishlistRouter);
-app.use('/events', sessionChecker, eventsRouter);
-app.use('/requests', sessionChecker, requestsRouter);
+app.use('/wishlist', wishlistRouter);
+app.use('/sessions', sessionsRouter);
+app.use('/events', eventsRouter);
+app.use('/requests', requestsRouter);
 
 
 // catch 404 and forward to error handler

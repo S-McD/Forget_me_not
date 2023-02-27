@@ -1,27 +1,40 @@
-<head>
-    <title>{{title}}</title>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Log In</title>
   </head>
+  <body>
+    <div class ="login-box">
+      <h1>Login</h1>
+      
+      <form id="new-session-form" action="/sessions" method="post">
+      <h2>Login</h2>
+          <div class="inputbox">
+            <input  type="email" name="email" required>
+            <label for="">Email</label>
+          </div>
+          <div class="inputbox">
+            <input type="password" name="password" required>
+            <label for="">Password</label>
+          </div>
+          <div>
+            <button>Login
+            </button>
+          </div>
+        <input id="submit" type="submit" value="Submit">
+      </form>
+      
+      <div class="register">
+         <p>Dont have an account <a href="signup">Register</a> </p>
+      </div>
+      
+    </div>
+    
+    <%- include('partials/footer') %>
+  </body>
+</html>
 
-<title></title>
-
-<div class ="login-box">
-<h1>Login</h1>
-
-<form id="new-session-form" action="userdashboard" method="post">
-<div class="user-box">
-  <input id="email" placeholder = "Email" type="email" name="email" value="">
-  </div><br>
-  <div class="user-box">
-  <input id="password" type="password" placeholder ="Password" name="password" value="">
-  </div><br>
-  <input id="submit" type="submit" value="Submit">
-</form>
-
-<p></p>
-
-<form method = 'GET' action = 'signup'> 
-    <input type = 'submit' value = 'Signup' >
-</form> 
-
-</div>
