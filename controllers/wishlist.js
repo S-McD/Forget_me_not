@@ -1,8 +1,9 @@
 const Wishlist = require("../models/wishlists");
 
 const WishlistController = {
-    All: (req, res) => {
-    res.render("wishlists");
+    All: async (req, res) => {
+        const userWishlists = await Wishlist.find({creator: req.session.user._id});
+    res.render("wishlists", {wishlists: userWishlists});
     },
 
     New: (req, res) => {
