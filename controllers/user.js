@@ -42,7 +42,7 @@ const UserController = {
 
     Index: async (req, res) => {
       
-      const userEvents = await Event.find({ creator: req.session.user._id });
+      const userEvents = await Event.find({ creator: req.session.user._id }).sort({date: 1});
       res.render("userdashboard", { events: userEvents });
     },
   };
