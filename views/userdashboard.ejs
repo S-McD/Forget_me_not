@@ -28,6 +28,10 @@
       <input type = 'submit' value = 'Create Event'>
     </form> 
 
+    <% events.forEach( (event) => { %>
+      <h1> <%= event.name %> </h1>
+    <% }) %>
+
     <%- include('partials/footer') %>
 
   </body>
