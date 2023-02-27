@@ -30,7 +30,7 @@
 
     <% events.forEach( (event) => { %>
       <h1> <%= event.name %> </h1>
-      <form method="get" action="/party_invite/<%=event._id%>">
+      <form method="get" action="/requests/party_invite/<%=event._id%>">
         <button type="submit"> Invite </button>
       </form>
     <% }) %>

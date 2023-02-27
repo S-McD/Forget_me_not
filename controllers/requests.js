@@ -1,6 +1,8 @@
 const RequestsController = {
     Event: (req, res) => {
-    res.render("party_invite");
+
+      console.log(req.params);
+    res.send("this is an invite page thing ");
     },
 
     Wishlist: (req, res) => {
