@@ -12,6 +12,7 @@ const WishlistController = {
     Create: (req, res) => {
         console.log("I'm creating a wishlist")
         const wishlist = new Wishlist(req.body);
+        wishlist.creator = req.session.user._id;
    
         wishlist.save((err) => {
             if (err) {
