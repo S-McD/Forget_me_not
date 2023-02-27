@@ -8,7 +8,7 @@ const sessions = require("express-session");
 var homeRouter = require('./routes/home');
 var usersRouter = require('./routes/users');
 var wishlistRouter = require('./routes/wishlists');
-const sessionsRouter = require('./routes/sessions');
+var dashboardRouter = require('./routes/dashboards');
 const eventsRouter = require('./routes/events');
 const requestsRouter = require('./routes/requests');
 
@@ -37,7 +37,7 @@ const oneDay = 1000 * 60 * 60 * 24;
 
 app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { maxAge: oneDay },
     resave: false
 }));
@@ -48,16 +48,17 @@ const sessionChecker = (req, res, next) => {
     console.log('redirect to login');
     res.redirect("/");
   } else {
+    console.log('session checked');
     next();
   }
 };
 
 app.use('/', homeRouter);
 app.use('/user', usersRouter);
-app.use('/wishlist', wishlistRouter);
-app.use('/sessions', sessionsRouter);
-app.use('/events', eventsRouter);
-app.use('/requests', requestsRouter);
+app.use('/dashboard', sessionChecker, dashboardRouter);
+app.use('/wishlist', sessionChecker, wishlistRouter);
+app.use('/events', sessionChecker, eventsRouter);
+app.use('/requests', sessionChecker, requestsRouter);
 
 
 // catch 404 and forward to error handler
@@ -74,6 +75,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+  next();
 });
 
 module.exports = app;

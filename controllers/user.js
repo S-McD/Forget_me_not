@@ -1,46 +1,59 @@
 const User = require("../models/users");
-const Event = require("../models/events");
 
 const UserController = {
-    New: (req, res) => {
-      res.render("signup");
-    },
 
-    Create: (req, res) => {
-      console.log(req.body)
+      // creates new user in db, creates a new session and routes the new user to the user dashboard
+      Create: (req, res) => {
       const email = req.body.email;
       User.findOne({ email: email }).then((user) => {
         if (user) {
           res.render("signup", {layout: "signup", error: "Email already in use"})
-        }
-      });
-  
-      if (req.body.password == req.body.confirm_password) {
+        } else if (req.body.password == req.body.confirm_password) {
         const user = new User(req.body); 
         user.save((err) => {
           if (err) {
             throw err;
           }
           // create new session here 
-          req.session.user = user
-          res.status(201).redirect("userdashboard");
+          req.session.user = user;
+          console.log(user);
+          res.status(201).redirect("/dashboard/userdashboard");
         });
       } else {
-        res.redirect("user/signup");
+        res.redirect("signup");
       }
-      },
-      // creates new user in db
-      // creates new session 
-      // routes new user to user dashboard 
-    
-    Login: (req, res) => {
-      res.render("login");
-    },
+      })},
 
-    Index: async (req, res) => {
-      const userEvents = await Event.find({ creator: req.session.user._id }).sort({date: 1});
-      res.render("userdashboard", { events: userEvents });
-    },
+      // Finds a user and logs them in
+      Find: (req, res) => {
+        console.log("trying to log in");
+        const email = req.body.email;
+        const password = req.body.password
+        User.findOne({ email: email }).then((user) => {
+          if (!user) {
+            res.render("login", {error: "incorrect email"});
+            console.log("ERROR")
+          } else if (user.password != password) {
+            res.render("login", {error: "incorrect password"});
+            console.log("ERROR 2")
+          } else {
+            req.session.user = user;
+            console.log(user);
+            console.log("logged in");
+            res.status(201).redirect("/dashboard/userdashboard");
+          }
+        });
+      },
+
+      // Logs the user out
+      Destroy: (req, res) => {
+        if (req.session.user && req.cookies.user_sid) {
+          res.clearCookie("user_sid");
+          res.session.destroy();
+        }
+        console.log("logged out")
+        res.redirect("/");
+      },
   };
   
 module.exports = UserController;  
