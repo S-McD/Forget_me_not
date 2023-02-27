@@ -2,6 +2,7 @@
     <title>Userdashboard</title>
     <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
 </head>
+<%- include('partials/signed_in_header') %>
 <h1>Userdashboard</h1>
 
 <div class="user-card">
@@ -29,9 +30,11 @@
       </div>
       </nav>
       </body>
-    
+      <form method = 'GET' action = '/events/new_event'> 
+        <input type = 'submit' value = 'Create Event' >
+    </form> 
     {{{body}}}
-    
+    <%- include('partials/footer') %>
   </body>
 </html>
 
