@@ -19,9 +19,8 @@ app.set("port", port);
 /**
  * Connect to MongoDB
  **/
-mongoose.set('strictQuery', false);
 
-var mongoDbUrl = process.env.MONGODB_URL || "mongodb://0.0.0.0/forget-me-not-test";
+var mongoDbUrl = process.env.MONGODB_URL || "mongodb://0.0.0.0/forget-me-not";
 mongoose.connect(mongoDbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
