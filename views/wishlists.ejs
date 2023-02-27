@@ -12,6 +12,9 @@ Button to create a new wishlist
  </head>
  <body>
     <%- include('partials/signed_in_header') %>
+      <% wishlists.forEach( (wishlist) => { %>
+         <h1> <%=wishlist.name %> </h1>
+      <% }) %>
     <%- include('partials/footer') %>
  </body>
  </html>
