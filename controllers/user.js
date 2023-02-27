@@ -1,4 +1,6 @@
 const User = require("../models/users");
+const Event = require("../models/events");
+
 
 const UserController = {
     New: (req, res) => {
@@ -38,8 +40,10 @@ const UserController = {
       res.render("login");
     },
 
-    Index: (req, res) => {
-      res.render("userdashboard");
+    Index: async (req, res) => {
+      
+      const userEvents = await Event.find({ creator: req.session.user._id });
+      res.render("userdashboard", { events: userEvents });
     },
   };
   

@@ -2,12 +2,11 @@ const User = require("../models/users");
 
 const SessionsController = {
   New: (req, res) => {
-    res.render("login");
+    res.render("/login");
   },
 
   Create: (req, res) => {
     console.log("trying to log in");
-    // find user in db and if pass && email match render userdashboard
     const email = req.body.email;
     const password = req.body.password
     console.log(req.body.email)
@@ -21,8 +20,8 @@ const SessionsController = {
         console.log("ERROR 2")
       } else {
         req.session.user = user;
+        console.log("logged in");
         res.redirect("user/userdashboard");
-        console.log(user);
       }
     });
   },
@@ -32,9 +31,9 @@ const SessionsController = {
     if (req.session.user && req.cookies.user_sid) {
       res.clearCookie("user_sid");
     }
-    res.redirect("user/login");
+    console.log("logged out")
+    res.redirect("/");
   },
-
 };
 
 

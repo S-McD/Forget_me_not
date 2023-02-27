@@ -1,44 +1,26 @@
-<!-- <!DOCTYPE html>
-
-<title><%= title %></title>
-<h1 class="title">Welcome to <%= title %></h1>
-<p> It's who's fucking Birthday!?</p>
-
-<form method = 'GET' action = 'user/signup'> 
-    <input type = 'submit' value = 'Signup' >
-</form> 
-
-<form method = 'GET' action = 'user/login'>
-    <input type = 'submit' value = 'Login' >
-</form>  -->
-
 <!DOCTYPE html>
-<html lang=""en">
-<head>
-  <link rel='stylesheet' href='/stylesheets/style.css' />
-  <title>Forget Me Not</title>
-</head>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title> Forget Me Not </title>
+  </head>
+  
+  <body>
+    <h1 class="title">Welcome to <%= title %></h1>
 
-<body>
+    <div class=login2-box>
+      <form method = 'GET' action = 'user/signup'> 
+        <button>Sign Up</button>
+      </form> 
     
-  <section>
-    <h1 class="title"><%= title %></h1>
-    <div class="login2-box">
-      <div class="form-value">
-        <form method = 'GET' action = 'user/signup'>
-            <button>Sign up
-            </button>
-        </form>
-        <form method = 'GET' action = 'user/login'>
-            <button>Login
-            </button>
-        </form>
-        </form>
-      </div>
-      </form>
+      <form method = 'GET' action = 'user/login'>
+        <button>Log In</button>
+      </form> 
     </div>
-  </section>
-</body>
-</form> 
+    
+    <%- include('partials/footer') %> 
+  </body>
 </html>
-
