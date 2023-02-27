@@ -1,8 +1,10 @@
-const Event = require("../models/events")
+const Event = require("../models/events");
+
 
 const EventsController = {
-    Index: (req, res) => {
-    res.render("events");
+    Index: async (req, res) => {
+      const userEvents = await Event.find({ creator: req.session.user._id });
+      res.render("events", { events: userEvents });
     },
 
     New: (req, res) => {

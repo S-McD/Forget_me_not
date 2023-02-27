@@ -1,6 +1,3 @@
-Page with a form to enter details for a new wishlist
-
-A new wishlist can be made for any person
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,6 +8,39 @@ A new wishlist can be made for any person
   </head>
   <body>
     <%- include('partials/signed_in_header') %>
+
+    <div class="middle_new">
+
+            <div class="middle">
+                <h1> Create a Wishlist </h1>
+            </div>
+
+            <div class="middle">
+                <h2> Here you can create an Wishlist by inputting the name, members and gifts </h2>
+            </div>
+
+            <div class="form_outline">
+
+                <form action="/wishlist/new_wishlist" method="POST">
+
+                    <label for="name">Name </label><br>
+                    <input type="text" id="name" name="name" pattern=".{0,100}" maxlength="100" size = "50" title="Up to 100 characters for the name of this event" placeholder="Stephen Frys' wishlist" class="name_box" ><br><br>
+                    <label for="deadline_date">Members </label><br>
+                    <input type="text" id="deadline_date" name="date" placeholder="Who's involved?" class="normal_box" ><br><br>
+                    <label for="deadline_date">Gifts </label><br>
+                    <input type="text" id="deadline_date" name="date" placeholder="What do they like?" class="normal_box" ><br><br>
+                    
+                    <div class="middle"> 
+                        <input type="submit" value="Create my Wishlist" class="submit_button">
+                    </div>
+                
+                </form>
+
+            </div>
+
+        </div>
+
     <%- include('partials/footer') %>
   </body>
 </html>
+

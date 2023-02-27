@@ -1,7 +1,6 @@
 const User = require("../models/users");
 const Event = require("../models/events");
 
-
 const UserController = {
     New: (req, res) => {
       res.render("signup");
@@ -14,7 +13,6 @@ const UserController = {
         if (user) {
           res.render("signup", {layout: "signup", error: "Email already in use"})
         }
-        console.log("ERROR")
       });
   
       if (req.body.password == req.body.confirm_password) {
@@ -40,8 +38,7 @@ const UserController = {
     },
 
     Index: async (req, res) => {
-      
-      const userEvents = await Event.find({ creator: req.session.user._id });
+      const userEvents = await Event.find({ creator: req.session.user._id }).sort({date: 1});
       res.render("userdashboard", { events: userEvents });
     },
   };

@@ -1,7 +1,7 @@
-landing page for all of a users created wishlists
+<!-- landing page for all of a users created wishlists
 
 It shows a list of all wishlists
-Button to create a new wishlist
+Button to create a new wishlist -->
  <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -12,6 +12,14 @@ Button to create a new wishlist
  </head>
  <body>
     <%- include('partials/signed_in_header') %>
+      <% wishlists.forEach( (wishlist) => { %>
+         <h1> <%=wishlist.name %> </h1>
+      <% }) %>
+
+      <form action='/wishlist/new_wishlist' method='GET'>
+         <input id="new_wishlist" type="submit" value="New Wishlist">
+      </form>
+
     <%- include('partials/footer') %>
  </body>
  </html>
