@@ -9,13 +9,15 @@ const SessionsController = {
     console.log("trying to log in");
     // find user in db and if pass && email match render userdashboard
     const email = req.body.email;
-    const password = req.body.password;
+    const password = req.body.password
+    console.log(req.body.email)
+    console.log(req.body.password)
     User.findOne({ email: email }).then((user) => {
       if (!user) {
-        res.render("login", { layout: "login", error: "incorrect email"});
+        res.render("login", {error: "incorrect email"});
         console.log("ERROR")
       } else if (user.password != password) {
-        res.render("login", {layout: "login", error: "incorrect password"});
+        res.render("login", {error: "incorrect password"});
         console.log("ERROR 2")
       } else {
         req.session.user = user;
