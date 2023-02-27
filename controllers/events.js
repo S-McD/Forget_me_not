@@ -12,7 +12,8 @@ const EventsController = {
     Create: (req, res) => {
       console.log("I'm creating an event")
       const event = new Event(req.body);
- 
+      event.attendees[0] = req.session.user._id;
+      console.log(event)
       event.save((err) => {
           if (err) {
             throw err;
