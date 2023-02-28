@@ -8,6 +8,7 @@ router.get("/gift_ideas", RequestsController.Wishlist);
 router.get("/present_invite", RequestsController.Gift);
 router.get("/", RequestsController.New);
 router.post("/party_invite/:eventID", RequestsController.Invite);
+router.post("/party_invite/:eventID/reply", RequestsController.Reply);
 
 
 module.exports = router;

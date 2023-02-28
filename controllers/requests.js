@@ -17,8 +17,13 @@ const RequestsController = {
       res.render("present_invite");
       },
 
-    New: (req, res) => {
-        res.render("work");
+    New: async (req, res) => {
+        const user = req.session.user;
+        console.log(user)
+        const userEvents = await Event.find({ invites: req.session.user._id }).sort({date: 1});
+        console.log(userEvents)
+        const userRequests = await Request.find({ recipient: user._id });
+        res.render("requests", { events: userEvents });
         },
 
     Invite: (req, res) => {
@@ -32,8 +37,15 @@ const RequestsController = {
           console.log("ERROR")
         } else {
           Event.findOneAndUpdate({ _id: req.params.eventID }, 
-            { $push: { invites: user._id } }
-        );
+            { $push: { invites: user._id } },
+            function (error, success) {
+              if (error) {
+                  console.log(error);
+              } else {
+                  console.log(success);
+              }
+          });
+    
           const request = new Request(
              );
           request.creator = req.session.user;
@@ -50,6 +62,25 @@ const RequestsController = {
         })
       }});
     },
-  };
-  
+
+    Reply: (req, res) => {
+      console.log(req.body)
+      if (req.body.response == "accept") {
+      Request.findOneAndUpdate({ recipent: req.session.user._id }, 
+        { status: "accepted" },
+        function (error, success) {
+          if (error) {
+              console.log(error);
+          } else {
+              console.log(success);
+          }
+        });
+      } else if (req.body.response == "rejected") {
+        Request.findOneAndUpdate({ recipent: req.session.user._id }, 
+          { status: "rejected" }
+        )
+        }
+        else console.log("try again")
+  },
+} 
   module.exports = RequestsController;

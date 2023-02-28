@@ -8,6 +8,13 @@
   </head>
   <body>
     <%- include('partials/signed_in_header') %>
+    <% events.forEach( (event) => { %>
+      <h1> <%= event.name %> </h1>
+      <form method="POST" action="/requests/party_invite/<%=event._id%>/reply">
+        <button name="response" value="accept" type="submit"> Accept </button>
+        <button name="response" value="rejected" type="submit"> Decline </button>
+      </form>
+    <% }) %>
     <%- include('partials/footer') %>
   </body>
 </html>
