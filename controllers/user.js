@@ -11,11 +11,8 @@ const UserController = {
       console.log(req.body.password.length)
         if (user) {
           res.render("signup", {layout: "signup", error: "Email already in use"})
-        } else if (req.body.password.length < 8) {
-            res.render("signup", {layout: "signup", error: "Password must contain atleast 8 characters"})
-            console.log("Password Issue")
         } else if (!regularExpression.test(password)) {
-          res.render("signup", {layout: "signup", error: "Password must contain atleast one number and special character"})
+          res.render("signup", {layout: "signup", error: "Password requirements: must be atleast 8 characters, 1 number and 1 special character"})
           console.log("Password Regex Issue")
         } else if (req.body.password == req.body.confirm_password) {
         const user = new User(req.body); 
