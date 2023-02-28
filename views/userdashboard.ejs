@@ -14,16 +14,13 @@
     <div class="user-card">
       <img src="/images/user.jpg" width="100px">
       <br>
-      Username: {{user.username}}
+      Hello <%=user.first_name%> <%=user.last_name%>.
       <br>
-      Email: {{user.email}}
+      You have <%=events.length%> events in your calander.
       <br>
-      Full name: {{user.firstName}} {{user.lastName}}
-      <br>
-      
-      You have {{user.friends.length}} friends 
+      You have <%=requests.length%> requests to reply to.
     </div>
-
+<br>
     <form method = 'GET' action = '/events/new_event'> 
       <input type = 'submit' value = 'Create Event'>
     </form> 

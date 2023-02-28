@@ -6,7 +6,7 @@ const RequestsController = require("../controllers/requests");
 router.get("/party_invite/:eventID", RequestsController.Event);
 router.get("/gift_ideas", RequestsController.Wishlist);
 router.get("/present_invite", RequestsController.Gift);
-router.get("/work", RequestsController.New);
+router.get("/", RequestsController.New);
 
 
 module.exports = router;
