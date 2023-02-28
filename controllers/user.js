@@ -5,9 +5,15 @@ const UserController = {
       // creates new user in db, creates a new session and routes the new user to the user dashboard
       Create: (req, res) => {
       const email = req.body.email;
+      const password = req.body.password
+      var regularExpression = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
       User.findOne({ email: email }).then((user) => {
+      console.log(req.body.password.length)
         if (user) {
           res.render("signup", {layout: "signup", error: "Email already in use"})
+        } else if (!regularExpression.test(password)) {
+          res.render("signup", {layout: "signup", error: "Password requirements: must be atleast 8 characters, 1 number and 1 special character"})
+          console.log("Password Regex Issue")
         } else if (req.body.password == req.body.confirm_password) {
         const user = new User(req.body); 
         user.save((err) => {

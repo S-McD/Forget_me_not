@@ -19,7 +19,7 @@ const EventsController = {
           if (err) {
             throw err;
           } else {
-            res.redirect("/user/userdashboard")
+            res.redirect("/dashboard/userdashboard")
           }
       });
       },
