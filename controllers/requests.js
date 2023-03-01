@@ -63,10 +63,13 @@ const RequestsController = {
       }});
     },
 
-    Reply: (req, res) => {
+    Accept: (req, res) => {
+      var success = Object.assign({},req.body)
+      console.log(success)
       console.log(req.body)
-      if (req.body.response == "accept") {
-      Request.findOneAndUpdate({ recipent: req.session.user._id }, 
+      if (success.response == "accept") {
+        console.log(req.session.user._id)
+      Request.findOneAndUpdate({ recipient: req.session.user._id }, 
         { status: "accepted" },
         function (error, success) {
           if (error) {
@@ -75,12 +78,36 @@ const RequestsController = {
               console.log(success);
           }
         });
-      } else if (req.body.response == "rejected") {
-        Request.findOneAndUpdate({ recipent: req.session.user._id }, 
-          { status: "rejected" }
-        )
-        }
-        else console.log("try again")
-  },
-} 
+        res.redirect("/requests")
+      }
+    },
+
+    Decline: (req, res) => {
+      var success = Object.assign({},req.body)
+      console.log(success)
+      console.log(req.body)
+      if (success.response == "rejected") {
+        console.log(req.session.user._id)
+      Request.findOneAndUpdate({ recipient: req.session.user._id }, 
+        { status: "rejected" },
+        function (error, success) {
+          if (error) {
+              console.log(error);
+          } else {
+              console.log(success);
+          }
+        });
+        res.redirect("/requests")
+      }
+    },
+}
+
+
+  //     } else if (req.body.response == "rejected") {
+  //       Request.findOneAndUpdate({ recipent: req.session.user._id }, 
+  //         { status: "rejected" }
+  //       )
+  //       }
+  //       else console.log("try again")
+  // },
   module.exports = RequestsController;
