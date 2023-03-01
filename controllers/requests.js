@@ -78,9 +78,18 @@ const RequestsController = {
               console.log(success);
           }
         });
+        Event.findOneAndUpdate({ _id: req.params.eventID }, 
+          { $push: { attendees: req.session.user._id } },
+          function (error, success) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log(success);
+            }
+        })
         res.redirect("/requests")
-      }
-    },
+    }
+  },
 
     Decline: (req, res) => {
       var success = Object.assign({},req.body)
@@ -97,6 +106,15 @@ const RequestsController = {
               console.log(success);
           }
         });
+        Event.findOneAndUpdate({ _id: req.params.eventID }, 
+          { $push: { rejected: req.session.user._id } },
+          function (error, success) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log(success);
+            }
+        })
         res.redirect("/requests")
       }
     },
