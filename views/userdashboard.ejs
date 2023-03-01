@@ -18,15 +18,18 @@
       <br>
       You have <%=events.length%> events in your calander.
       <br>
-      You have <%=requests.length%> requests to reply to.
+      You have <%=requests.length%> request(s) to reply to.
     </div>
     
 <br>
     <form method = 'GET' action = '/events/new_event'> 
       <input type = 'submit' value = 'Create Event'>
     </form> 
+
       <% events.forEach( (event) => { %>
       <h1> <%= event.name %> </h1>
+      <h3> <%= event.date.toDateString() %> </h3>
+
       <form method="get" action="/requests/party_invite/<%=event._id%>">
         <button type="submit"> Invite </button>
       </form>
