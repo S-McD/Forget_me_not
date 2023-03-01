@@ -5,6 +5,7 @@ const EventSchema = new mongoose.Schema({
   date: Date,
   invites: [{type: mongoose.Types.ObjectId, ref: "User"}],
   attendees: [{type: mongoose.Types.ObjectId, ref: "User"}],
+  declines: [{type: mongoose.Types.ObjectId, ref: "User"}],
   gift: {type: mongoose.Types.ObjectId, ref: "Gift"},
   creator: {type: mongoose.Types.ObjectId, ref: "User"},
 });
