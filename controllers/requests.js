@@ -22,14 +22,14 @@ const RequestsController = {
         console.log(user)
         const userEvents = await Event.find({ invites: req.session.user._id }).sort({date: 1});
         console.log(userEvents)
-        const userRequests = await Request.find({ recipient: user._id });
+        // const userRequests = await Request.find({ recipient: user._id });
         res.render("requests", { events: userEvents });
         },
 
     Invite: (req, res) => {
       console.log("finding user");
       const first_name = req.body.first_name;
-      const last_name = req.body.last_name
+      // const last_name = req.body.last_name
       User.findOne ({ first_name: first_name }).then((user) => {
         if (!user) {
           res.render("invite", {error: "user doesn't exist"});
