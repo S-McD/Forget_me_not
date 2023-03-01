@@ -8,6 +8,12 @@
   </head>
   <body>
     <%- include('partials/signed_in_header') %>
+    <form action='/requests/party_invite/<%= eventID %>' method='POST'>
+      <label for="user_name">Invite Users </label><br>
+      <input type="text" id="first_name" name="first_name" placeholder="User First Name?"><br>
+      <input type="text" id="last_name" name="last_name" placeholder="User Last Name?"><br>
+      <input id="new__party_invite" type="submit" value="Invite">
+    </form>
     <%- include('partials/footer') %>
   </body>
 </html>

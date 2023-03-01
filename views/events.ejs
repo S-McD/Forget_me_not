@@ -8,6 +8,9 @@
 </head>
 <body>
     <%- include('partials/signed_in_header') %>
+    <form method = 'GET' action = '/events/new_event'> 
+        <input type = 'submit' value = 'Create Event'>
+      </form> 
     <% events.forEach( (event) => { %>
         <h1> <%= event.name %> </h1>
       <% }) %>
