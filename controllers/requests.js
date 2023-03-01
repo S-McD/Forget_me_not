@@ -1,6 +1,7 @@
 const User = require("../models/users");
 const Event = require("../models/events");
 const Request = require("../models/requests");
+const Wishlist = require("../models/wishlists");
 
 const RequestsController = {
     Event: (req, res) => {
@@ -22,8 +23,10 @@ const RequestsController = {
         console.log(user)
         const userEvents = await Event.find({ invites: req.session.user._id }).sort({date: 1});
         console.log(userEvents)
+        const userWishlists = await Wishlist.find({ invites: req.session.user._id }).sort({date: 1});
+        console.log(userWishlists)
         // const userRequests = await Request.find({ recipient: user._id });
-        res.render("requests", { events: userEvents });
+        res.render("requests", { events: userEvents }, { wishlists: userWishlists });
         },
 
     Invite: (req, res) => {
@@ -35,7 +38,6 @@ const RequestsController = {
           res.render("invite", {error: "user doesn't exist"});
           console.log("ERROR");
         } else {
-
           Event.findOneAndUpdate({ _id: req.params.eventID }, 
             { $push: { invites: user._id } },
             function (error, success) {

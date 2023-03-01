@@ -14,6 +14,10 @@ Button to create a new wishlist -->
     <%- include('partials/signed_in_header') %>
       <% wishlists.forEach( (wishlist) => { %>
          <h1> <%=wishlist.name %> </h1>
+
+         <form method="get" action="/wishlist/wishlist_invite/<%=wishlist._id%>">
+            <button type="submit"> Invite </button>
+         </form>
       <% }) %>
 
       <form action='/wishlist/new_wishlist' method='GET'>
