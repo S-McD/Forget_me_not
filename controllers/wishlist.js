@@ -108,6 +108,26 @@ const WishlistController = {
         }
       },
 
+      Decline: (req, res) => {
+        var success = Object.assign({},req.body)
+        console.log(success)
+        console.log(req.body)
+        if (success.response == "rejected") {
+          console.log(req.session.user._id)
+        Request.findOneAndUpdate({ recipient: req.session.user._id }, 
+          { status: "rejected" },
+          function (error, success) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log(success);
+            }
+          });
+          
+          res.redirect("/requests")
+      }
+    },
+
         // Invite: (req, res) => {
         //   console.log("finding user");
         //   const first_name = req.body.first_name;

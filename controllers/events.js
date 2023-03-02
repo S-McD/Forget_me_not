@@ -1,5 +1,7 @@
 const Event = require("../models/events");
 const User = require("../models/users");
+const Wishlist = require("../models/wishlists");
+const Gift = require("../models/gifts");
 
 const EventsController = {
   Index: async (req, res) => {
@@ -8,10 +10,13 @@ const EventsController = {
   },
  
   Find: async (req, res) => {
-    // const userEvents = await Event.find({ creator: req.session.user._id });
+    const userEvents = await Event.find({ creator: req.session.user._id });
     const currentEvent = await Event.find({ _id: req.params.eventID });
-    console.log(currentEvent)
-    res.render("event_template", { event: currentEvent[0] });
+    const wishlistID = (currentEvent[0].wishlist);
+    const eventWishlist = await Wishlist.find({_id: wishlistID});
+    
+    const data = {event: currentEvent[0]};
+    res.render('event_template', {data: data});
   },
 
   New: (req, res) => {
