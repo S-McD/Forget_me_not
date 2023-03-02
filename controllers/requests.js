@@ -41,33 +41,48 @@ const RequestsController = {
           res.render("invite", {error: "user doesn't exist"});
           console.log("ERROR");
         } else {
-
-          Event.findOneAndUpdate({ _id: req.params.eventID }, 
-            { $push: { invites: user._id } },
-            function (error, success) {
-              if (error) {
+             Event.findOneAndUpdate( {_id: req.params.eventID}, 
+              { $push: { invites: user._id } }, 
+              function(error, success) {
+                if (error) {
                   console.log(error);
-              } else {
+                } else {
                   console.log(success);
-              }
-          });
-        }
-      })
+                }
+            const request = new Request();
+            request.creator = req.session.user;
+            request.recipient = user._id;
+            request.event = req.params.eventID
+            request.save((err) => {
+              if (err){
+                throw err;
+                console.log(request);
+              };
+            res.status(201).redirect("/dashboard/userdashboard");
+            });
+              });
+        };
+      // const request = new Request();
+      // request.creator = req.session.user;
+      // request.recipient = user.
+      // });
+    });
+  },
     
-          const request = new Request();
-          request.creator = req.session.user;
-          request.recipient = user._id;
-          request.event = req.params.eventID; 
-          request.save((err) => {
-          if (err) {
-            throw err;    
-            console.log(request)
-          }
-      console.log(user);
-      console.log("got em");
-      res.status(201).redirect("/dashboard/userdashboard");
-      })
-      }, 
+      //     const request = new Request();
+      //     request.creator = req.session.user;
+      //     request.recipient = user._id;
+      //     request.event = req.params.eventID; 
+      //     request.save((err) => {
+      //     if (err) {
+      //       throw err;    
+      //       console.log(request)
+      //     }
+      // console.log(user);
+      // console.log("got em");
+      // res.status(201).redirect("/dashboard/userdashboard");
+      // })
+    
 
     Accept: (req, res) => {
       var success = Object.assign({},req.body)
@@ -124,6 +139,6 @@ const RequestsController = {
         res.redirect("/requests")
       }
     },
-}
+};
 
 module.exports = RequestsController;
