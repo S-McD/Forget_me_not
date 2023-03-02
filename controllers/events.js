@@ -15,8 +15,7 @@ const EventsController = {
     const wishlistID = (currentEvent[0].wishlist);
     const eventWishlist = await Wishlist.find({_id: wishlistID});
     
-  
-    const data = {event: currentEvent[0], wishlist: eventWishlist[0]};
+    const data = {event: currentEvent[0]};
     res.render('event_template', {data: data});
   },
 
