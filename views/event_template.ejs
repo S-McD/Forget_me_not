@@ -13,8 +13,8 @@
         <h2>Wishlist</h2>
         <h3> <%= data.wishlist.name %> </h3> 
         <ul>
-         <% data.wishlist.gifts.forEach( (gift) => { %>
-           <li> gift </li>
+         <% data.gifts.forEach( (gift) => { %>
+           <li> <%= gift.item %> </li>
          <% }) %>
         </ul>
      </div>

@@ -15,14 +15,16 @@ const EventsController = {
     const wishlistID = currentEvent[0].wishlist;
     const eventWishlist = await Wishlist.find({ _id: wishlistID});
     const giftIDs = eventWishlist[0].gifts;
-    //
     const giftArray = [];
-    giftIDs.forEach( async (giftID) => {
-      const singleGift = await Gift.find({ _id: giftID});
+  
+    for (let i = 0; i < giftIDs.length; i++) {
+      let singleGift = await Gift.find({_id: giftIDs[i]})
       giftArray.push(singleGift[0]);
-    });
+    };
+   
+    const data = {event: currentEvent[0], wishlist: eventWishlist[0], gifts: giftArray};
+    console.log(data.gifts)
     
-    const data = {event: currentEvent[0], wishlist: eventWishlist[0]};
     res.render('event_template', {data: data});
   },
 
