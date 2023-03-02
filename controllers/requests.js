@@ -5,7 +5,6 @@ const Wishlist = require("../models/wishlists");
 
 const RequestsController = {
     Event: (req, res) => {
-
       console.log(req.params.eventID);
       res.render("party_invite", { eventID: req.params.eventID});
     },
@@ -23,21 +22,26 @@ const RequestsController = {
         console.log(user)
         const userEvents = await Event.find({ invites: req.session.user._id }).sort({date: 1});
         console.log(userEvents)
+
         const userWishlists = await Wishlist.find({ invites: req.session.user._id }).sort({date: 1});
         console.log(userWishlists)
         const userdata = { events: userEvents,  wishlists: userWishlists };
         res.render("requests", { userdata: userdata });
+
+        const userRequests = await Request.find({ recipient: user._id });
+        res.render("requests", { events: userEvents });>>>>>>> main
         },
 
     Invite: (req, res) => {
       console.log("finding user");
       const first_name = req.body.first_name;
-      // const last_name = req.body.last_name
+      const last_name = req.body.last_name
       User.findOne ({ first_name: first_name }).then((user) => {
         if (!user) {
           res.render("invite", {error: "user doesn't exist"});
           console.log("ERROR");
         } else {
+
           Event.findOneAndUpdate({ _id: req.params.eventID }, 
             { $push: { invites: user._id } },
             function (error, success) {
@@ -56,17 +60,34 @@ const RequestsController = {
           request.save((err) => {
           if (err) {
             throw err;
+      Event.findOneAndUpdate({ _id: req.params.eventID }, 
+        { $push: { invites: user._id } },
+        function (error, success) {
+          if (error) {
+              console.log(error);
+          } else {
+              console.log(success);
           }
-          console.log(request)
+      });    
+      const request = new Request(
+          );
+      request.creator = req.session.user;
+      request.recipient = user._id;
+      request.event = req.params.eventID; 
+      request.save((err) => {
+      if (err) {
+        throw err;
+      }
+      console.log(request)
 
           // update event invitees
           // create new request object and save it 
           // redirect 
 
-          console.log(user);
-          console.log("got em");
-          res.status(201).redirect("/dashboard/userdashboard");
-        })
+      console.log(user);
+      console.log("got em");
+      res.status(201).redirect("/dashboard/userdashboard");
+      })
       }});
     },
 
@@ -85,18 +106,18 @@ const RequestsController = {
               console.log(success);
           }
         });
-        Event.findOneAndUpdate({ _id: req.params.eventID }, 
-          { $push: { attendees: req.session.user._id } },
-          function (error, success) {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log(success);
-            }
-        })
-        res.redirect("/requests")
-    }
-  },
+      Event.findOneAndUpdate({ _id: req.params.eventID }, 
+        { $push: { attendees: req.session.user._id } },
+        function (error, success) {
+          if (error) {
+              console.log(error);
+          } else {
+              console.log(success);
+          }
+      })
+      res.redirect("/requests")
+      }
+    },
 
     Decline: (req, res) => {
       var success = Object.assign({},req.body)
@@ -127,12 +148,4 @@ const RequestsController = {
     },
 }
 
-
-  //     } else if (req.body.response == "rejected") {
-  //       Request.findOneAndUpdate({ recipent: req.session.user._id }, 
-  //         { status: "rejected" }
-  //       )
-  //       }
-  //       else console.log("try again")
-  // },
-  module.exports = RequestsController;
+module.exports = RequestsController;

@@ -12,7 +12,7 @@
         <input type = 'submit' value = 'Create Event'>
       </form> 
     <% events.forEach( (event) => { %>
-        <h1> <%= event.name %> </h1>
+        <a href="/events/<%= event._id %>"><h1> <%= event.name %> </h1></a>
       <% }) %>
     <%- include('partials/footer') %>
 </body>

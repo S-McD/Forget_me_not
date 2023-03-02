@@ -11,4 +11,7 @@ router.get("/wishlist_invite/:wishlistID", WishlistController.Invite);
 router.post("/wishlist_invite/:wishlistID/accept", WishlistController.Accept);
 // router.post("/wishlist_invite/:wishlistID/decline", WishlistController.Decline);
 
+// router.post("/wishlist_invite/:wishlistID", WishlistController.Invite);
+
+
 module.exports = router;

@@ -6,6 +6,11 @@ const EventsController = {
     const userEvents = await Event.find({ creator: req.session.user._id });
     res.render("events", { events: userEvents });
   },
+ 
+  Find: async (req, res) => {
+    const userEvents = await Event.find({ creator: req.session.user._id });
+    res.render("event_template", { events: userEvents });
+  },
 
   New: (req, res) => {
     res.render("new_event");
