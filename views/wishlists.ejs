@@ -19,6 +19,10 @@ Button to create a new wishlist -->
          <form method="get" action="/wishlist/wishlist_invite/<%=wishlist._id%>">
             <button type="submit"> Invite </button>
          </form>
+         <form method="post" action="/wishlist/assignEvent/<%=wishlist._id%>">
+            <input type="text" name="eventName">
+            <button type="submit">Assign to an Event</button>
+         </form>
       <% }) %>
 
     <form method = 'GET' action = 'wishlist/new_wishlist'> 
