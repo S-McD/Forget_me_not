@@ -1,2 +1,1 @@
-. Select one item from wishlist as gift
-  . 
+. render wishlist for an indi. event.
