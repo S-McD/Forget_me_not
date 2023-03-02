@@ -9,18 +9,18 @@ const Request = require("../models/requests");
 
 const WishlistController = {
     All: async (req, res) => {
-        const userWishlists = await Wishlist.find({creator: req.session.user._id});
+        let userWishlists = await Wishlist.find({creator: req.session.user._id});
         for (let i = 0; i < userWishlists.length; i++) {
-          let singleList = userWishlists[i]
-          for (let x = 0; x < singleList.gifts.length; x++) {
-            let giftSearchTerm = singleList.gifts[x]
+           userWishlists[i]
+          for (let x = 0; x < userWishlists[i].gifts.length; x++) {
+            let giftSearchTerm = userWishlists[i].gifts[x]
             const myGift = await Gift.find({ _id: giftSearchTerm});
-            
-            singleList.gifts[x] = [];
-            
-            singleList.gifts[x] = myGift[0];
+            userWishlists[i].gifts[x] = myGift[0];
+            console.log ('nest for loop')
+            console.log(userWishlists); 
           }
-          console.log(userWishlists.gifts);
+          console.log('top for loop');
+          console.log(userWishlists);
         }
         res.render("wishlists", {wishlists: userWishlists});
     },
