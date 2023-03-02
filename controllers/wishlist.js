@@ -134,7 +134,22 @@ const WishlistController = {
             }
           });
           res.redirect("/requests")
+      };
+},
+      Assign: (req, res) => {
+        console.log(req.body);
+        console.log(req.params);
+        Event.findOneAndUpdate({ name: req.body.eventName }, 
+          { wishlist: req.params.wishlistID },
+          function (error, success) {
+            if (error) {
+                console.log(error);
+            } else {
+                res.redirect("/dashboard/userdashboard");
+            }
+        });
       },
+
 };
 
 module.exports = WishlistController;
