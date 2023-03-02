@@ -16,7 +16,6 @@ const EventsController = {
     const eventWishlist = await Wishlist.find({ _id: wishlistID});
     const giftIDs = eventWishlist[0].gifts;
     const giftArray = [];
-  
     for (let i = 0; i < giftIDs.length; i++) {
       let singleGift = await Gift.find({_id: giftIDs[i]})
       giftArray.push(singleGift[0]);

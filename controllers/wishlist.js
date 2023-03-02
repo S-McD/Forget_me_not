@@ -5,12 +5,24 @@ const Gift = require("../models/gifts");
 const Event = require("../models/events");
 const Request = require("../models/requests");
 
-
+// 
 
 const WishlistController = {
     All: async (req, res) => {
         const userWishlists = await Wishlist.find({creator: req.session.user._id});
-    res.render("wishlists", {wishlists: userWishlists});
+        for (let i = 0; i < userWishlists.length; i++) {
+          let singleList = userWishlists[i]
+          for (let x = 0; x < singleList.gifts.length; x++) {
+            let giftSearchTerm = singleList.gifts[x]
+            const myGift = await Gift.find({ _id: giftSearchTerm});
+            
+            singleList.gifts[x] = [];
+            
+            singleList.gifts[x] = myGift[0];
+          }
+          console.log(userWishlists.gifts);
+        }
+        res.render("wishlists", {wishlists: userWishlists});
     },
 
     New: (req, res) => {

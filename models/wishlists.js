@@ -4,7 +4,7 @@ const WishlistSchema = new mongoose.Schema({
   name: String,
   invites: [{type: mongoose.Types.ObjectId, ref: "User"}],
   members: [{type: mongoose.Types.ObjectId, ref: "User"}],
-  gifts: [{type: mongoose.Types.ObjectId, ref: "Gift"}],
+  gifts: [],
   creator: {type: mongoose.Types.ObjectId, ref: "User"},
 });
   

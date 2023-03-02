@@ -15,6 +15,9 @@ Button to create a new wishlist -->
 
       <% wishlists.forEach( (wishlist) => { %>
          <h1> <%=wishlist.name %> </h1>
+           <% wishlist.gifts.forEach( (gift) => { %>
+              <p>gift.item</p>
+           <% }) %>
 
          <form method="get" action="/wishlist/wishlist_invite/<%=wishlist._id%>">
             <button type="submit"> Invite </button>
