@@ -1,5 +1,6 @@
 const Wishlist = require("../models/wishlists");
 const User = require("../models/users");
+const Gift = require("../models/gifts");
 
 const Event = require("../models/events");
 const Request = require("../models/requests");
@@ -24,17 +25,27 @@ const WishlistController = {
 
     Create: (req, res) => {
         console.log("I'm creating a wishlist")
-        console.log(req.body);
         const wishlist = new Wishlist(req.body);
         wishlist.creator = req.session.user._id;
-   
-        wishlist.save((err) => {
-            if (err) {
-              throw err;
-            } else {
-              res.redirect("/wishlist")
-            }
+        const initGift = new Gift()
+        initGift.item = req.body.gift;
+        wishlist.gifts = initGift._id;
+
+        initGift.save((err) => {
+          if (err) {
+            throw err
+          } else {
+            wishlist.save((err) => {
+              if (err) {
+                throw err;
+              } else {
+                res.redirect("/wishlist")
+              }
+          });
+          };
         });
+   
+        
         },
 
 
