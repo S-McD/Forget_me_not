@@ -8,15 +8,29 @@
   </head>
   <body>
     <%- include('partials/signed_in_header') %>
-    <% events.forEach( (event) => { %>
-      <h1> <%= event.name %> </h1>
-      <form method="POST" action="/requests/party_invite/<%=event._id%>/accept">
-        <button name="response" value="accept" type="submit"> Accept </button>
-      </form>
-      <form method="POST" action="/requests/party_invite/<%=event._id%>/decline">
-        <button name="response" value="rejected" type="submit"> Decline </button>
-      </form>
-    <% }) %>
+    <div>
+      <% userdata.events.forEach( (event) => { %>
+        <h1> <%= event.name %> </h1>
+        <form method="POST" action="/requests/party_invite/<%=event._id%>/accept">
+          <button name="response" value="accept" type="submit"> Accept </button>
+        </form>
+        <form method="POST" action="/requests/party_invite/<%=event._id%>/decline">
+          <button name="response" value="rejected" type="submit"> Decline </button>
+        </form>
+      <% }) %>
+      </div>
+      <br>
+      <div>
+        <% userdata.wishlists.forEach( (wishlist) => { %>
+          <h1> <%= wishlist.name %> </h1>
+          <form method="POST" action="/requests/wishlist_invite/<%=wishlist._id%>/accept">
+            <button name="response" value="accept" type="submit"> Accept </button>
+          </form>
+          <form method="POST" action="/requests/wishlist_invite/<%=wishlist._id%>/decline">
+            <button name="response" value="rejected" type="submit"> Decline </button>
+          </form>
+        <% }) %>
+    </div>
     <%- include('partials/footer') %>
   </body>
 </html>

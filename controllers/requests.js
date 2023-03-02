@@ -1,6 +1,7 @@
 const User = require("../models/users");
 const Event = require("../models/events");
 const Request = require("../models/requests");
+const Wishlist = require("../models/wishlists");
 
 const RequestsController = {
     Event: (req, res) => {
@@ -21,8 +22,14 @@ const RequestsController = {
         console.log(user)
         const userEvents = await Event.find({ invites: req.session.user._id }).sort({date: 1});
         console.log(userEvents)
+
+        const userWishlists = await Wishlist.find({ invites: req.session.user._id }).sort({date: 1});
+        console.log(userWishlists)
+        const userdata = { events: userEvents,  wishlists: userWishlists };
+        res.render("requests", { userdata: userdata });
+
         const userRequests = await Request.find({ recipient: user._id });
-        res.render("requests", { events: userEvents });
+        res.render("requests", { events: userEvents });>>>>>>> main
         },
 
     Invite: (req, res) => {
@@ -34,6 +41,25 @@ const RequestsController = {
           res.render("invite", {error: "user doesn't exist"});
           console.log("ERROR");
         } else {
+
+          Event.findOneAndUpdate({ _id: req.params.eventID }, 
+            { $push: { invites: user._id } },
+            function (error, success) {
+              if (error) {
+                  console.log(error);
+              } else {
+                  console.log(success);
+              }
+          });
+    
+          const request = new Request(
+             );
+          request.creator = req.session.user;
+          request.recipient = user._id;
+          request.event = req.params.eventID; 
+          request.save((err) => {
+          if (err) {
+            throw err;
       Event.findOneAndUpdate({ _id: req.params.eventID }, 
         { $push: { invites: user._id } },
         function (error, success) {

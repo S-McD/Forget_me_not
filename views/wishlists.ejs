@@ -12,9 +12,19 @@ Button to create a new wishlist -->
  </head>
  <body>
     <%- include('partials/signed_in_header') %>
+
+      <% wishlists.forEach( (wishlist) => { %>
+         <h1> <%=wishlist.name %> </h1>
+
+         <form method="get" action="/wishlist/wishlist_invite/<%=wishlist._id%>">
+            <button type="submit"> Invite </button>
+         </form>
+      <% }) %>
+
     <form method = 'GET' action = '/new_wishlist'> 
       <input type = 'submit' value = 'Create Wishlist'>
     </form> 
+
 
       <% wishlist.forEach( (wishlist) => { %>
       <h1> <%= wishlist.name %> </h1>
