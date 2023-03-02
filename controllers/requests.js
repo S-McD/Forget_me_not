@@ -29,7 +29,7 @@ const RequestsController = {
         res.render("requests", { userdata: userdata });
 
         const userRequests = await Request.find({ recipient: user._id });
-        res.render("requests", { events: userEvents });>>>>>>> main
+        res.render("requests", { events: userEvents });
         },
 
     Invite: (req, res) => {
@@ -51,45 +51,23 @@ const RequestsController = {
                   console.log(success);
               }
           });
+        }
+      })
     
-          const request = new Request(
-             );
+          const request = new Request();
           request.creator = req.session.user;
           request.recipient = user._id;
           request.event = req.params.eventID; 
           request.save((err) => {
           if (err) {
-            throw err;
-      Event.findOneAndUpdate({ _id: req.params.eventID }, 
-        { $push: { invites: user._id } },
-        function (error, success) {
-          if (error) {
-              console.log(error);
-          } else {
-              console.log(success);
+            throw err;    
+            console.log(request)
           }
-      });    
-      const request = new Request(
-          );
-      request.creator = req.session.user;
-      request.recipient = user._id;
-      request.event = req.params.eventID; 
-      request.save((err) => {
-      if (err) {
-        throw err;
-      }
-      console.log(request)
-
-          // update event invitees
-          // create new request object and save it 
-          // redirect 
-
       console.log(user);
       console.log("got em");
       res.status(201).redirect("/dashboard/userdashboard");
       })
-      }});
-    },
+      }, 
 
     Accept: (req, res) => {
       var success = Object.assign({},req.body)
