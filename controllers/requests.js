@@ -25,8 +25,8 @@ const RequestsController = {
         console.log(userEvents)
         const userWishlists = await Wishlist.find({ invites: req.session.user._id }).sort({date: 1});
         console.log(userWishlists)
-        // const userRequests = await Request.find({ recipient: user._id });
-        res.render("requests", { events: userEvents }, { wishlists: userWishlists });
+        const userdata = { events: userEvents,  wishlists: userWishlists };
+        res.render("requests", { userdata: userdata });
         },
 
     Invite: (req, res) => {
