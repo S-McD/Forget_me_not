@@ -88,11 +88,12 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-   background: linear-gradient(to top, #fbc2eb 100%, #a18cd1 0% );
+  background-color: rgba(54, 25, 25, .0);
+   /* background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 0% ); */
 }
 
 header img {
-  width: 12rem;
+  width: 10vw;
 }
 
 nav {
@@ -106,7 +107,7 @@ nav {
       -ms-flex-pack: end;
           justify-content: flex-end;
   height: 10vh;
-  width: 80vw;
+  width: 90vw;
 }
 
 nav ul {
