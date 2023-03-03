@@ -9,6 +9,7 @@
 body {
     display: grid;
     height: 100vh;
+    background-attachment: fixed;
     margin: 0;
     place-items: center;
     background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
@@ -131,7 +132,7 @@ nav a {
 
 nav a:hover {
   color: coral;
-  width: 15%;
+  width: 10%;
 }
 
 nav a:after {
