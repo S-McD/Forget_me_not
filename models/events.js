@@ -9,6 +9,7 @@ const EventSchema = new mongoose.Schema({
   declines: [{type: mongoose.Types.ObjectId, ref: "User"}],
   gift: {type: mongoose.Types.ObjectId, ref: "Gift"},
   creator: {type: mongoose.Types.ObjectId, ref: "User"},
+  wishlist: {type: mongoose.Types.ObjectId, ref: "Wishlist"},
 });
   
 const Event = mongoose.model("Event", EventSchema);
